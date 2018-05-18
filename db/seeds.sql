@@ -1,0 +1,1 @@
+INSERT INTO items (item) VALUES ('Skydive'), ('See the Mona Lisa'), ('Visit Machu Pichu');
