@@ -1,26 +1,26 @@
 const express = require('express'),
   router = express.Router(),
-  item = require('../models/item.js')
+  db = require('../models')
 
 // Create all our routes and set up logic within those routes where required.
 router.get('/', (req, res) => {
-  item.all(data => res.render('index', { items: data }))
+  db.item.findAll({}).then(data => res.render('index', { items: data }))
 })
 
 router.post('/api/items', (req, res) => {
-  item.create(['item', 'accomplished'], [req.body.item, req.body.accomplished || 0],  result =>  res.json({ id: result.insertId }))
+  db.item.create(
+    (({ item, accomplished }) => ({ item, accomplished }))(req.body)
+  ).then(item => res.json({ id: item.id }))
 })
 
 router.put('/api/items/:id', (req, res) => {
   let condition = 'id = ' + req.params.id
 
-  item.update(
-    {
-      accomplished: req.body.accomplished
-    },
-    condition,
-    result => res.status(result.changedRows === 0 ? 404 : 200).end()
-  )
+  db.item.update((({ item, accomplished }) => ({ item, accomplished }))(req.body), {
+    where: {
+      id: req.params.id
+    }
+  }).then(data => res.status(data[0] === 0 ? 404 : 200).end())
 })
 
 

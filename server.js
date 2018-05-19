@@ -1,9 +1,10 @@
 const express = require('express'),
   bodyParser = require('body-parser'),
   exphbs = require('express-handlebars'),
-  routes = require('./controllers/itemsController.js')
+  routes = require('./controllers/itemsController.js'),
   PORT = process.env.PORT || 3000,
-  app = express()
+  app = express(),
+  db = require("./models")
 
 // Serve static content for the app from the 'public' directory in the application directory.
 app.use(express.static('public'))
@@ -20,6 +21,4 @@ app.set('view engine', 'handlebars')
 // use controller for routing
 app.use(routes)
 
-app.listen(PORT, function () {
-  console.log('App now listening at localhost:' + PORT)
-})
+db.sequelize.sync().then(() => app.listen(PORT, () => console.log("App listening on PORT " + PORT)));

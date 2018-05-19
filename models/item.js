@@ -1,13 +1,15 @@
-const orm = require('../config/orm.js')
-
-module.exports = {
-  all: function (callback) {
-    orm.selectAll('items', callback)
-  },
-  create: function (cols, vals, callback) {
-    orm.insertOne('items', cols, vals, callback)
-  },
-  update: function (objColVals, condition, callback) {
-    orm.updateOne('items', objColVals, condition, callback)
-  }
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define("item", {
+    item: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [1, 140]
+      }
+    },
+    accomplished: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    }
+  })
 }
