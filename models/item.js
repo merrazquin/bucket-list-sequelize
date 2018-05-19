@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define("item", {
+  return sequelize.define('item', {
     item: {
       type: DataTypes.STRING,
       validate: {

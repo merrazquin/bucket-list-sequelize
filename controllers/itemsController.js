@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
 
 router.post('/api/items', (req, res) => {
   db.item.create(
+    // create an object using only `item` and `accomplished` from `req.body`
     (({ item, accomplished }) => ({ item, accomplished }))(req.body)
   ).then(item => res.json({ id: item.id }))
 })

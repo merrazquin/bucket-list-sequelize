@@ -2,7 +2,7 @@
 ## Overview
 Keep track of your bucket list items
 
-### <a href="https://intense-tundra-15294.herokuapp.com/" target="_blank">View Demo</a>
+### <a href="https://bucket-list-sequelize-mje.herokuapp.com/" target="_blank">View Demo</a>
 
 ## Concepts implemented
 * MVC Pattern
@@ -14,6 +14,7 @@ Keep track of your bucket list items
 * Node.js
 * Express
 * MySQL
+* Sequelize
 * Handlebars
 
 ## Screenshot
