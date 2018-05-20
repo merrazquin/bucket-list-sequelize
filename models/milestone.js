@@ -9,7 +9,9 @@ module.exports = function (sequelize, DataTypes) {
         })
 
     Milestone.associate = (models) => {
-        Milestone.hasMany(models.item)
+        Milestone.hasMany(models.item, {
+            onDelete: "CASCADE"
+        })
     }
 
     return Milestone
