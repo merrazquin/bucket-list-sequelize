@@ -4,8 +4,8 @@ const express = require('express'),
 
 // Create all our routes and set up logic within those routes where required.
 router.get('/', (req, res) => {
-  db.item.findAll({ include: [db.milestone] }).then(items => {
-    db.milestone.findAll({}).then(milestones => res.render('index', { items: items, milestones: milestones }))
+  db.item.findAll({ include: [db.milestone], order: ['item'] }).then(items => {
+    db.milestone.findAll({ order: ['name'] }).then(milestones => res.render('index', { items: items, milestones: milestones }))
   })
 })
 
