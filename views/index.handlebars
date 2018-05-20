@@ -26,12 +26,21 @@
 
 <h4 class="teal-text text-lighten-2">Add an item</h4>
 <form class="create-form">
-
-  <div class="input-field">
-    <label for="item">Item</label>
-    <input type="text" id="item" name="item" required>
+  <div class="row">
+    <div class="input-field col m12 l6">
+      <label for="item">Item</label>
+      <input type="text" id="item" name="item" required>
+    </div>
+    <div class="input-field col m12 l6">
+      <input type="text" id="milestone" name="milestone" list="milestoneList" required>
+      <datalist id="milestoneList" class="browser-default">
+        {{#each milestones}}
+          <option data-value="{{this.id}}" value="{{this.name}}"/>
+        {{/each}}
+      </datalist>
+      <label for="milestone">Before I...</label>
+    </div>
   </div>
-
   <button class="btn waves-effect waves-light" type="submit" name="submit">Add Item
     <i class="material-icons right">add</i>
   </button>

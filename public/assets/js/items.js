@@ -15,9 +15,13 @@ $(function () {
   $('.create-form').on('submit', function (event) {
     event.preventDefault()
 
+    var milestoneId = $('option').filter(function () { return this.value == $('#milestone').val() }).data('value')
+
     var newItem = {
       item: $('#item').val().trim(),
-      accomplished: 0
+      accomplished: 0,
+      milestoneId: milestoneId == undefined ? null : milestoneId,
+      milestone: milestoneId == undefined ? { name: $('#milestone').val() } : null
     }
 
     // Send the POST request.

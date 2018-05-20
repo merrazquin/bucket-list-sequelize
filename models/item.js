@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('item', {
+  const Item = sequelize.define('item', {
     item: {
       type: DataTypes.STRING,
       validate: {
@@ -12,4 +12,10 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: false
     }
   })
+
+  Item.associate = (models) => {
+    Item.belongsTo(models.milestone)
+  }
+
+  return Item
 }
